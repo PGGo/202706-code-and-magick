@@ -19,7 +19,7 @@ window.renderStatistics = function (ctx, names, times) {
   var max = -1;
   var maxIndex = -1;
 
-  for (var i = 0 ; i < times.length; i++) {
+  for (var i = 0; i < times.length; i++) {
     var time = times[i];
     if (time > max) {
       max = time;
@@ -35,8 +35,7 @@ window.renderStatistics = function (ctx, names, times) {
   var barWidth = 40;
   var indent = 50;
 
-  for(var i = 0; i < times.length; i++) {
-    debugger;
+  for (var i = 0; i < times.length; i++) {
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
@@ -45,7 +44,6 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillRect(initialX + (barWidth + indent) * i, initialY, barWidth, -(times[i] * step));
     ctx.fillStyle = '#000000';
     ctx.fillText(names[i], initialX + (barWidth + indent) * i, initialY + 20);
-    debugger;
     ctx.fillText(times[i].toFixed(0), initialX + (barWidth + indent) * i, initialY - times[i] * step - 10);
   }
 };
