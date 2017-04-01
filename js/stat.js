@@ -27,6 +27,7 @@ window.renderStatistics = function (ctx, names, times) {
     }
   }
 
+
   var histogramHeight = 150;
   var step = histogramHeight / max;
 
