@@ -27,23 +27,23 @@ window.renderStatistics = function (ctx, names, times) {
     }
 
     return max;
-  }
+  };
 
   var getRandomColor = function () {
     return 'rgba(0, 0, 255, ' + Math.random() + ')';
-  }
+  };
 
   var drawBar = function (initialX, initialY, barWidth, indent) {
     ctx.fillRect(initialX + (barWidth + indent) * i, initialY, barWidth, -(times[i] * step));
-  }
+  };
 
   var drawText = function (names, initialX, initialY, barWidth, indent) {
     ctx.fillText(names[i], initialX + (barWidth + indent) * i, initialY + 20);
-  }
+  };
 
   var drawTime = function (times, initialX, initialY, barWidth, indent) {
     ctx.fillText(times[i].toFixed(0), initialX + (barWidth + indent) * i, initialY - times[i] * step - 10);
-  }
+  };
 
   getMaxTime(times);
 
