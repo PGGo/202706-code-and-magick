@@ -16,10 +16,10 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура, вы победили!', 120, 40);
   ctx.fillText('Список результатов:', 120, 56);
 
-  var max = -1;
 
   var getMaxTime = function (times) {
     for (var i = 0; i < times.length; i++) {
+      var max = -1;
       var time = times[i];
       if (time > max) {
         max = time;
@@ -33,22 +33,22 @@ window.renderStatistics = function (ctx, names, times) {
     return 'rgba(0, 0, 255, ' + Math.random() + ')';
   };
 
-  var drawBar = function (initialX, initialY, barWidth, indent) {
+  var drawBar = function (initialX, initialY, barWidth, indent, i) {
     ctx.fillRect(initialX + (barWidth + indent) * i, initialY, barWidth, -(times[i] * step));
   };
 
-  var drawText = function (names, initialX, initialY, barWidth, indent) {
+  var drawText = function (names, initialX, initialY, barWidth, indent, i) {
     ctx.fillText(names[i], initialX + (barWidth + indent) * i, initialY + 20);
   };
 
-  var drawTime = function (times, initialX, initialY, barWidth, indent) {
+  var drawTime = function (times, initialX, initialY, barWidth, indent, i) {
     ctx.fillText(times[i].toFixed(0), initialX + (barWidth + indent) * i, initialY - times[i] * step - 10);
   };
 
-  getMaxTime(times);
+  var maxTime = getMaxTime(times);
 
   var histogramHeight = 150;
-  var step = histogramHeight / max;
+  var step = histogramHeight / maxTime;
 
   var initialX = 140;
   var initialY = 240;
@@ -61,9 +61,9 @@ window.renderStatistics = function (ctx, names, times) {
     } else {
       ctx.fillStyle = getRandomColor();
     }
-    drawBar(initialX, initialY, barWidth, indent);
+    drawBar(initialX, initialY, barWidth, indent, i);
     ctx.fillStyle = '#000000';
-    drawText(names, initialX, initialY, barWidth, indent);
-    drawTime(times, initialX, initialY, barWidth, indent);
+    drawText(names, initialX, initialY, barWidth, indent, i);
+    drawTime(times, initialX, initialY, barWidth, indent, i);
   }
 };
