@@ -17,10 +17,10 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Список результатов:', 120, 56);
 
 
-  var getMaxTime = function (times) {
-    for (var i = 0; i < times.length; i++) {
+  var getMaxTime = function (timesArr) {
+    for (var i = 0; i < timesArr.length; i++) {
       var max = -1;
-      var time = times[i];
+      var time = timesArr[i];
       if (time > max) {
         max = time;
       }
@@ -37,12 +37,12 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillRect(initialX + (barWidth + indent) * i, initialY, barWidth, -(times[i] * step));
   };
 
-  var drawText = function (names, initialX, initialY, barWidth, indent, i) {
-    ctx.fillText(names[i], initialX + (barWidth + indent) * i, initialY + 20);
+  var drawText = function (namesArr, initialX, initialY, barWidth, indent, i) {
+    ctx.fillText(namesArr[i], initialX + (barWidth + indent) * i, initialY + 20);
   };
 
-  var drawTime = function (times, initialX, initialY, barWidth, indent, i) {
-    ctx.fillText(times[i].toFixed(0), initialX + (barWidth + indent) * i, initialY - times[i] * step - 10);
+  var drawTime = function (timesArr, initialX, initialY, barWidth, indent, i) {
+    ctx.fillText(timesArr[i].toFixed(0), initialX + (barWidth + indent) * i, initialY - timesArr[i] * step - 10);
   };
 
   var maxTime = getMaxTime(times);
@@ -61,6 +61,7 @@ window.renderStatistics = function (ctx, names, times) {
     } else {
       ctx.fillStyle = getRandomColor();
     }
+    debugger;
     drawBar(initialX, initialY, barWidth, indent, i);
     ctx.fillStyle = '#000000';
     drawText(names, initialX, initialY, barWidth, indent, i);
