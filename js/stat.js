@@ -16,10 +16,10 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура, вы победили!', 120, 40);
   ctx.fillText('Список результатов:', 120, 56);
 
+  var max = -1;
 
   var getMaxTime = function (timesArr) {
     for (var i = 0; i < timesArr.length; i++) {
-      var max = -1;
       var time = timesArr[i];
       if (time > max) {
         max = time;
@@ -33,8 +33,8 @@ window.renderStatistics = function (ctx, names, times) {
     return 'rgba(0, 0, 255, ' + Math.random() + ')';
   };
 
-  var drawBar = function (initialX, initialY, barWidth, indent, i) {
-    ctx.fillRect(initialX + (barWidth + indent) * i, initialY, barWidth, -(times[i] * step));
+  var drawBar = function (timesArr, initialX, initialY, barWidth, indent, i) {
+    ctx.fillRect(initialX + (barWidth + indent) * i, initialY, barWidth, -(timesArr[i] * step));
   };
 
   var drawText = function (namesArr, initialX, initialY, barWidth, indent, i) {
@@ -61,7 +61,7 @@ window.renderStatistics = function (ctx, names, times) {
     } else {
       ctx.fillStyle = getRandomColor();
     }
-    drawBar(initialX, initialY, barWidth, indent, i);
+    drawBar(times, initialX, initialY, barWidth, indent, i);
     ctx.fillStyle = '#000000';
     drawText(names, initialX, initialY, barWidth, indent, i);
     drawTime(times, initialX, initialY, barWidth, indent, i);
