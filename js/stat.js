@@ -61,7 +61,6 @@ window.renderStatistics = function (ctx, names, times) {
     } else {
       ctx.fillStyle = getRandomColor();
     }
-    debugger;
     drawBar(initialX, initialY, barWidth, indent, i);
     ctx.fillStyle = '#000000';
     drawText(names, initialX, initialY, barWidth, indent, i);
