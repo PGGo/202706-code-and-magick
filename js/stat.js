@@ -32,11 +32,11 @@ window.renderStatistics = function (ctx, names, times) {
     return 'rgba(0, 0, 255, ' + Math.random() + ')';
   };
 
-  var drawBar = function(ctx, x, y, width, height) {
+  var drawBar = function (x, y, width, height) {
     ctx.fillRect(x, y, width, height);
   };
 
-  var drawText = function(ctx, text, x, y, color) {
+  var drawText = function (text, x, y, color) {
     ctx.fillStyle = color;
     ctx.fillText(text, x, y);
   };
@@ -65,8 +65,8 @@ window.renderStatistics = function (ctx, names, times) {
     var color = '#000000';
     var timeY = initialY - times[i] * step - 10;
 
-    drawBar(ctx, barX, barY, barWidth, barHeight);
-    drawText(ctx, names[i], barX, textY);
-    drawText(ctx, times[i].toFixed(0), barX, timeY);
+    drawBar(barX, barY, barWidth, barHeight);
+    drawText(names[i], barX, textY, color);
+    drawText(times[i].toFixed(0), barX, timeY, color);
   }
 };
