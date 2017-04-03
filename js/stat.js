@@ -16,9 +16,8 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура, вы победили!', 120, 40);
   ctx.fillText('Список результатов:', 120, 56);
 
-  var max = -1;
-
   var getMaxTime = function (timesArr) {
+    var max = -1;
     for (var i = 0; i < timesArr.length; i++) {
       var time = timesArr[i];
       if (time > max) {
@@ -33,16 +32,13 @@ window.renderStatistics = function (ctx, names, times) {
     return 'rgba(0, 0, 255, ' + Math.random() + ')';
   };
 
-  var drawBar = function (timesArr, initialX, initialY, barWidth, indent, i) {
-    ctx.fillRect(initialX + (barWidth + indent) * i, initialY, barWidth, -(timesArr[i] * step));
+  var drawBar = function(ctx, x, y, width, height) {
+    ctx.fillRect(x, y, width, height);
   };
 
-  var drawText = function (namesArr, initialX, initialY, barWidth, indent, i) {
-    ctx.fillText(namesArr[i], initialX + (barWidth + indent) * i, initialY + 20);
-  };
-
-  var drawTime = function (timesArr, initialX, initialY, barWidth, indent, i) {
-    ctx.fillText(timesArr[i].toFixed(0), initialX + (barWidth + indent) * i, initialY - timesArr[i] * step - 10);
+  var drawText = function(ctx, text, x, y, color) {
+    ctx.fillStyle = color;
+    ctx.fillText(text, x, y);
   };
 
   var maxTime = getMaxTime(times);
@@ -61,9 +57,16 @@ window.renderStatistics = function (ctx, names, times) {
     } else {
       ctx.fillStyle = getRandomColor();
     }
-    drawBar(times, initialX, initialY, barWidth, indent, i);
-    ctx.fillStyle = '#000000';
-    drawText(names, initialX, initialY, barWidth, indent, i);
-    drawTime(times, initialX, initialY, barWidth, indent, i);
+
+    var barX = initialX + (barWidth + indent) * i;
+    var barY = initialY;
+    var barHeight = -(times[i] * step);
+    var textY = initialY + 20;
+    var color = '#000000';
+    var timeY = initialY - times[i] * step - 10;
+
+    drawBar(ctx, barX, barY, barWidth, barHeight);
+    drawText(ctx, names[i], barX, textY);
+    drawText(ctx, times[i].toFixed(0), barX, timeY);
   }
 };
