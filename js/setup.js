@@ -24,7 +24,6 @@ for (var i = 0; i <= 3; i++) {
     coatColor: WIZARD_COAT_COLORS[randomInteger(0, WIZARD_COAT_COLORS.length - 1)],
     eyesColor: WIZARD_EYES_COLORS[randomInteger(0, WIZARD_EYES_COLORS.length - 1)]
   };
-
   wizards[i] = wizardItem;
 }
 
