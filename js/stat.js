@@ -24,7 +24,7 @@ window.renderStatistics = function (ctx, names, times) {
         max = time;
       }
     }
-    
+
     return max;
   };
 
